@@ -1,10 +1,9 @@
 "use client";
 
+import { useAccountAbstractionUtils } from "@/hooks/useAccountAbstractionUtils";
 import useDelegateSmartAccount from "@/hooks/useDelegateSmartAccount";
 import useStorageClient from "@/hooks/useStorageClient";
 import { prepareRedeemDelegationData } from "@/utils/delegationUtils";
-import { pimlicoClient } from "@/utils/pimlicoUtils";
-import { bundlerClient, paymasterClient } from "@/utils/viemUtils";
 import { getDeleGatorEnvironment } from "@metamask-private/delegator-core-viem";
 import { useState } from "react";
 import { Hex } from "viem";
@@ -16,6 +15,8 @@ export default function RedeemDelegationButton() {
   const [transactionHash, setTransactionHash] = useState<Hex | null>(null);
   const chain = sepolia;
   const { getDelegation } = useStorageClient();
+  const { bundlerClient, paymasterClient, pimlicoClient } =
+    useAccountAbstractionUtils();
 
   const handleRedeemDelegation = async () => {
     if (!smartAccount) return;
@@ -29,9 +30,9 @@ export default function RedeemDelegationButton() {
     }
 
     const redeemData = prepareRedeemDelegationData(delegation);
-    const { fast: fee } = await pimlicoClient.getUserOperationGasPrice();
+    const { fast: fee } = await pimlicoClient!.getUserOperationGasPrice();
 
-    const userOperationHash = await bundlerClient.sendUserOperation({
+    const userOperationHash = await bundlerClient!.sendUserOperation({
       account: smartAccount,
       calls: [
         {
@@ -43,7 +44,7 @@ export default function RedeemDelegationButton() {
       paymaster: paymasterClient,
     });
 
-    const { receipt } = await bundlerClient.waitForUserOperationReceipt({
+    const { receipt } = await bundlerClient!.waitForUserOperationReceipt({
       hash: userOperationHash,
     });
 

@@ -1,45 +1,51 @@
 "use client";
 
 import useDelegatorSmartAccount from "@/hooks/useDelegatorSmartAccount";
-import { AppContext } from "@/providers/AppProvider";
-import { pimlicoClient } from "@/utils/pimlicoUtils";
-import { bundlerClient, paymasterClient } from "@/utils/viemUtils";
-import { useContext, useState } from "react";
+import { useStepContext } from "@/hooks/useStepContext";
+import { useAccountAbstractionUtils } from "@/hooks/useAccountAbstractionUtils";
+import { useState } from "react";
 import { zeroAddress } from "viem";
 
 export default function DeployDelegatorButton() {
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const { smartAccount } = useDelegatorSmartAccount();
-  const { setStep } = useContext(AppContext);
+  const { changeStep } = useStepContext();
+  const { bundlerClient, paymasterClient, pimlicoClient } =
+    useAccountAbstractionUtils();
 
   const handleDeployDelegator = async () => {
     if (!smartAccount) return;
     setLoading(true);
-    const { fast: fee } = await pimlicoClient.getUserOperationGasPrice();
+    const { fast: fee } = await pimlicoClient!.getUserOperationGasPrice();
 
-    const userOperationHash = await bundlerClient.sendUserOperation({
-      account: smartAccount,
-      calls: [
-        {
-          to: zeroAddress,
-        },
-      ],
-      paymaster: paymasterClient,
-      ...fee,
-    });
+      const userOperationHash = await bundlerClient!.sendUserOperation({
+        account: smartAccount,
+        calls: [
+          {
+            to: zeroAddress,
+          },
+        ],
+        paymaster: paymasterClient,
+        ...fee,
+      });
 
-    const { receipt } = await bundlerClient.waitForUserOperationReceipt({
-      hash: userOperationHash,
-    });
+      const { receipt } = await bundlerClient!.waitForUserOperationReceipt({
+        hash: userOperationHash,
+      });
 
     console.log(receipt);
     setLoading(false);
-    setStep(3);
+    changeStep(3);
   };
 
   return (
-    <button className="button" onClick={handleDeployDelegator}>
-      {loading ? "Deploying..." : "Deploy Delegator Account"}
-    </button>
+    <>
+      <button className="button" onClick={handleDeployDelegator}>
+        {loading ? "Deploying..." : "Deploy Delegator Account"}
+      </button>
+      {error && <div className="error">{error}</div>}
+    </>
+
   );
 }

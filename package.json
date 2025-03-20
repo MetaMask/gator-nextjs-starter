@@ -19,6 +19,7 @@
     "permissionless": "^0.2.35",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "viem": "^2.23.12",
     "wagmi": "^2.14.12"
   },
   "devDependencies": {
