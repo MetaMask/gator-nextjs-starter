@@ -1,10 +1,10 @@
 "use client";
 
-import { useAccountAbstractionUtils } from "@/hooks/useAccountAbstractionUtils";
+import { usePimlicoUtils } from "@/hooks/usePimlicoUtils";
 import useDelegateSmartAccount from "@/hooks/useDelegateSmartAccount";
 import useStorageClient from "@/hooks/useStorageClient";
 import { prepareRedeemDelegationData } from "@/utils/delegationUtils";
-import { getDeleGatorEnvironment } from "@metamask-private/delegator-core-viem";
+import { getDeleGatorEnvironment } from "@metamask/delegation-toolkit";
 import { useState } from "react";
 import { Hex } from "viem";
 import { sepolia } from "viem/chains";
@@ -16,7 +16,7 @@ export default function RedeemDelegationButton() {
   const chain = sepolia;
   const { getDelegation } = useStorageClient();
   const { bundlerClient, paymasterClient, pimlicoClient } =
-    useAccountAbstractionUtils();
+    usePimlicoUtils();
 
   const handleRedeemDelegation = async () => {
     if (!smartAccount) return;

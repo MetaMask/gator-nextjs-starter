@@ -2,23 +2,22 @@
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { createConfig, http, WagmiProvider } from "wagmi";
-import { lineaSepolia } from "viem/chains";
+import { sepolia as chain } from "viem/chains";
 import { ReactNode } from "react";
-import web3AuthConnector from "@/connectors/Web3AuthConnector";
 import { metaMask } from "wagmi/connectors";
 import { GatorProvider } from "@/providers/GatorProvider";
 import { StepProvider } from "@/providers/StepProvider";
 
-export const connectors = [metaMask(), web3AuthConnector([lineaSepolia])];
+export const connectors = [metaMask()];
 
 const queryClient = new QueryClient();
 
 export const wagmiConfig = createConfig({
-  chains: [lineaSepolia],
+  chains: [chain],
   connectors,
   multiInjectedProviderDiscovery: false,
   transports: {
-    [lineaSepolia.id]: http(),
+    [chain.id]: http(),
   },
 });
 
