@@ -7,13 +7,13 @@ import { prepareRedeemDelegationData } from "@/utils/delegationUtils";
 import { getDeleGatorEnvironment } from "@metamask/delegation-toolkit";
 import { useState } from "react";
 import { Hex } from "viem";
-import { sepolia } from "viem/chains";
+import { optimism } from "viem/chains";
 
 export default function RedeemDelegationButton() {
   const { smartAccount } = useDelegateSmartAccount();
   const [loading, setLoading] = useState(false);
   const [transactionHash, setTransactionHash] = useState<Hex | null>(null);
-  const chain = sepolia;
+  const chain = optimism;
   const { getDelegation } = useStorageClient();
   const { bundlerClient, paymasterClient, pimlicoClient } =
     usePimlicoUtils();
@@ -36,7 +36,8 @@ export default function RedeemDelegationButton() {
       account: smartAccount,
       calls: [
         {
-          to: getDeleGatorEnvironment(chain.id).DelegationManager,
+          //to: getDeleGatorEnvironment(chain.id).DelegationManager,
+          to: smartAccount.address,
           data: redeemData,
         },
       ],
@@ -61,7 +62,7 @@ export default function RedeemDelegationButton() {
           className="button"
           onClick={() =>
             window.open(
-              `https://sepolia.etherscan.io/tx/${transactionHash}`,
+              `https://optimistic.etherscan.io/tx/${transactionHash}`,
               "_blank"
             )
           }

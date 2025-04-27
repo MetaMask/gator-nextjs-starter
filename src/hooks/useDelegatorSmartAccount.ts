@@ -21,7 +21,7 @@ export default function useDelegatorSmartAccount(): {
   useEffect(() => {
     if (!address || !walletClient || !publicClient) return;
 
-    console.log("Creating smart account");
+    console.log("Creating delegate smart account");
 
     toMetaMaskSmartAccount({
       client: publicClient,
@@ -30,6 +30,7 @@ export default function useDelegatorSmartAccount(): {
       deploySalt: "0x",
       signatory: { walletClient },
     }).then((smartAccount) => {
+      console.info("delegator smart account address: ", smartAccount.address)
       setSmartAccount(smartAccount);
     });
   }, [address, walletClient, publicClient]);
