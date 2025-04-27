@@ -24,6 +24,7 @@ export default function RedeemDelegationButton() {
     setLoading(true);
 
     const delegation = getDelegation(smartAccount.address);
+    
 
     if (!delegation) {
       return;
