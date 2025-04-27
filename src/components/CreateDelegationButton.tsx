@@ -15,23 +15,28 @@ export default function CreateDelegationButton() {
   const handleCreateDelegation = async () => {
     if (!smartAccount || !delegateSmartAccount) return;
     console.log(smartAccount.address, delegateSmartAccount.address);
+
+
     const delegation = prepareRootDelegation(
       smartAccount,
       delegateSmartAccount.address
     );
 
+    console.info("............................. sign delegation ..............................")
     const signature = await smartAccount.signDelegation({
       delegation,
     });
+    console.info(".............. done")
 
     const signedDelegation = {
       ...delegation,
       signature,
     };
 
+
     console.log(signedDelegation);
     storeDelegation(signedDelegation);
-    changeStep(5);
+    changeStep(6);
   };
 
   return (

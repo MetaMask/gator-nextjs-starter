@@ -5,6 +5,7 @@ import CreateDelegateButton from "@/components/CreateDelegateButton";
 import CreateDelegationButton from "@/components/CreateDelegationButton";
 import DeployDelegatorButton from "@/components/DeployDelegatorButton";
 import RedeemDelegationButton from "@/components/RedeemDelegationButton";
+import RedelegationButton from "@/components/RedelegationButton";
 import useDelegateSmartAccount from "@/hooks/useDelegateSmartAccount";
 import useDelegatorSmartAccount from "@/hooks/useDelegatorSmartAccount";
 import useStorageClient from "@/hooks/useStorageClient";
@@ -39,7 +40,8 @@ export default function Steps() {
       if (!delegation) {
         changeStep(4);
       } else {
-        changeStep(5);
+        console.info("....... go to step 6")
+        changeStep(6);
       }
     }
   }, [isConnected, smartAccount, delegateSmartAccount]);
@@ -100,6 +102,14 @@ export default function Steps() {
             on behalf of the delegator
           </p>
           <RedeemDelegationButton />
+        </>
+      )}
+      {step === 6 && (
+        <>
+          <p className="text-block">
+            The redeemer submits a user operation on a redelegation
+          </p>
+          <RedelegationButton />
         </>
       )}
     </>
