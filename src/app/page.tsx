@@ -1,14 +1,11 @@
 "use client";
-import styles from "./page.module.css";
 import Steps from "@/components/Steps";
-import Hero from "@/components/Hero";
 import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Hero />
+    <div className="grid items-center justify-items-center min-h-screen p-8 gap-4 font-geist-sans">
+      <main className="flex flex-col gap-6 row-start-2">
         <Steps />
       </main>
       <Footer />

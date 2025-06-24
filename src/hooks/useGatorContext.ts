@@ -1,3 +1,4 @@
+"use client";
 import { GatorContext } from "@/providers/GatorProvider";
 import { useContext } from "react";
 

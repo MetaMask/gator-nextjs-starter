@@ -2,15 +2,17 @@
 
 import useDelegatorSmartAccount from "@/hooks/useDelegatorSmartAccount";
 import { useStepContext } from "@/hooks/useStepContext";
-import { usePimlicoUtils } from "@/hooks/usePimlicoUtils";
+import { usePimlicoServices } from "@/hooks/usePimlicoServices";
 import { useState } from "react";
 import { zeroAddress } from "viem";
+import Button from "@/components/Button";
 
 export default function DeployDelegatorButton() {
   const [loading, setLoading] = useState(false);
   const { smartAccount } = useDelegatorSmartAccount();
   const { changeStep } = useStepContext();
-  const { bundlerClient, paymasterClient, pimlicoClient } = usePimlicoUtils();
+  const { bundlerClient, paymasterClient, pimlicoClient } =
+    usePimlicoServices();
 
   const handleDeployDelegator = async () => {
     if (!smartAccount) return;
@@ -38,10 +40,8 @@ export default function DeployDelegatorButton() {
   };
 
   return (
-    <>
-      <button className="button" onClick={handleDeployDelegator}>
-        {loading ? "Deploying..." : "Deploy Delegator Account"}
-      </button>
-    </>
+    <Button onClick={handleDeployDelegator}>
+      {loading ? "Deploying..." : "Deploy Delegator Account"}
+    </Button>
   );
 }
