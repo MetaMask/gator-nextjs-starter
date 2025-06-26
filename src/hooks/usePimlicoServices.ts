@@ -12,7 +12,7 @@ import {
 } from "viem/account-abstraction";
 import { useChainId } from "wagmi";
 
-export function usePimlicoUtils() {
+export function usePimlicoServices() {
   const [paymasterClient, setPaymasterClient] = useState<PaymasterClient>();
   const [bundlerClient, setBundlerClient] = useState<BundlerClient>();
   const [pimlicoClient, setPimlicoClient] = useState<PimlicoClient>();

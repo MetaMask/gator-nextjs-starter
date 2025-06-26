@@ -2,7 +2,7 @@
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { createConfig, http, WagmiProvider } from "wagmi";
-import { sepolia as chain } from "viem/chains";
+import { sepolia } from "viem/chains";
 import { ReactNode } from "react";
 import { metaMask } from "wagmi/connectors";
 import { GatorProvider } from "@/providers/GatorProvider";
@@ -13,11 +13,11 @@ export const connectors = [metaMask()];
 const queryClient = new QueryClient();
 
 export const wagmiConfig = createConfig({
-  chains: [chain],
+  chains: [sepolia],
   connectors,
   multiInjectedProviderDiscovery: false,
   transports: {
-    [chain.id]: http(),
+    [sepolia.id]: http(),
   },
 });
 
