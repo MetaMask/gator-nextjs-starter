@@ -13,8 +13,8 @@ export function prepareRootDelegation(
   delegate: Address
 ): Delegation {
   // The following scope is a simple example that limits
-  // the number of native token transfers the delegate can perform on the delegator's
-  // behalf.
+  // the amount of native token transfers that the delegate can 
+  // transfer on the delegator's behalf.
 
   // You can add more caveats to the delegation as needed to restrict
   // the delegate's actions. Checkout Smart Accounts Kit docs for more
