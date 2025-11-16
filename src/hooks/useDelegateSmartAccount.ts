@@ -4,7 +4,7 @@ import {
   Implementation,
   MetaMaskSmartAccount,
   toMetaMaskSmartAccount,
-} from "@metamask/delegation-toolkit";
+} from "@metamask/smart-accounts-kit";
 import { useEffect, useState } from "react";
 import { privateKeyToAccount } from "viem/accounts";
 import { usePublicClient } from "wagmi";
@@ -30,7 +30,7 @@ export default function useDelegateSmartAccount() {
       implementation: Implementation.Hybrid,
       deployParams: [account.address, [], [], []],
       deploySalt: "0x",
-      signatory: { account },
+      signer: { account },
     }).then((smartAccount) => {
       setSmartAccount(smartAccount);
     });

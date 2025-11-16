@@ -1,10 +1,10 @@
-# NextJS Gator Starter Template
+# NextJS MetaMask Smart Account & Delegation Example
 
-This is a NextJS Gator Starter template created with create-gator-app.
+This is a NextJS MetaMask Smart Account & Delegation template created with [@metamask/create-gator-app](https://www.npmjs.com/package/@metamask/create-gator-app).
 
-This template is meant to help you bootstrap your own projects with [Metamask Delegation Toolkit](https://metamask.io/developer/delegation-toolkit). It helps you build smart accounts with account abstraction, and powerful delegation features.
+This template is meant to help you bootstrap your own projects with [Metamask Smart Accounts Kit](https://metamask.io/developer/smart-accounts-kit). It helps you build on MetaMask Smart Accounts, and powerful delegation features.
 
-Learn more about [Metamask Delegation Toolkit](https://metamask.io/developer/delegation-toolkit).
+Learn more about [Metamask Smart Accounts Kit](https://metamask.io/developer/smart-accounts-kit).
 
 ## Prerequisites
 
@@ -52,7 +52,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Learn More
 
-To learn more about Delegation Toolkit, take a look at the following resources:
+To learn more about the MetaMask Smart Accounts Kit, take a look at the following resources:
 
-- [Delegation Toolkit Documentation](https://docs.metamask.io/delegation-toolkit/) - learn about Delegation Toolkit features and API.
+- [Smart Accoutns Kit Documentation](https://docs.metamask.io/smart-accounts-kit/) - Lean more about Smart Accounts Kit features and API.
 

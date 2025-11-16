@@ -4,7 +4,7 @@ import {
   Implementation,
   MetaMaskSmartAccount,
   toMetaMaskSmartAccount,
-} from "@metamask/delegation-toolkit";
+} from "@metamask/smart-accounts-kit";
 import { useEffect, useState } from "react";
 import { useAccount, usePublicClient, useWalletClient } from "wagmi";
 
@@ -28,7 +28,7 @@ export default function useDelegatorSmartAccount(): {
       implementation: Implementation.Hybrid,
       deployParams: [address, [], [], []],
       deploySalt: "0x",
-      signatory: { walletClient },
+      signer: { walletClient },
     }).then((smartAccount) => {
       setSmartAccount(smartAccount);
     });
